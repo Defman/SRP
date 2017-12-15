@@ -1,0 +1,40 @@
+\documentclass[a4paper,danish,oneside,headings=appendixprefix]{scrreprt}
+\usepackage[
+  margin=20mm,
+  footskip=10mm,
+  headsep=0mm,
+  head=13.59999pt,
+]{geometry}
+\usepackage[danish]{babel}
+\selectlanguage{danish}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ragged2e}
+\usepackage{pdfpages}
+
+\usepackage{hyperref}
+
+\usepackage{subfiles}
+
+\usepackage{scrlayer-scrpage}
+\pagestyle{empty}
+
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage{lipsum}
+
+\begin{document}
+  \subfile{Forside.tex}
+  \tableofcontents
+
+  \subfile{Afsnit/Indledning.tex}
+  \subfile{Afsnit/MonteCarloSimulering.tex}
+  \subfile{Afsnit/StokastiskeVariable.tex}
+  \subfile{Afsnit/Anvendelse.tex}
+  \subfile{Afsnit/Diskussion.tex}
+  \subfile{Afsnit/Konklusion.tex}
+
+  \subfile{Bilag/Bilag.tex}
+
+\end{document}
