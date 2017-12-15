@@ -1,28 +1,34 @@
-\documentclass[a4paper,danish,oneside,headings=appendixprefix]{scrreprt}
+\documentclass[
+  paper=a4,
+  danish,
+  oneside]{scrreprt}
 \usepackage[
-  margin=20mm,
-  footskip=10mm,
-  headsep=0mm,
-  head=13.59999pt,
+  top=30mm,
+  bottom=30mm,
 ]{geometry}
+
 \usepackage[danish]{babel}
-\selectlanguage{danish}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{ragged2e}
 \usepackage{pdfpages}
 
+\usepackage{enumitem}
+
 \usepackage{hyperref}
 
 \usepackage{subfiles}
-
-\usepackage{scrlayer-scrpage}
-\pagestyle{empty}
 
 \usepackage{amssymb}
 \usepackage{mathtools}
 
 \usepackage{lipsum}
+
+\usepackage[
+  backend=biber,
+  style=alphabetic,
+  sorting=ynt]{biblatex}
+\addbibresource{Bibliography.bib}
 
 \begin{document}
   \subfile{Forside.tex}
