@@ -12,6 +12,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{ragged2e}
 \usepackage{pdfpages}
+\usepackage{listings}
 
 \usepackage{enumitem}
 
@@ -21,14 +22,23 @@
 
 \usepackage{amssymb}
 \usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{pgfplots}
 
 \usepackage{lipsum}
 
+\usepackage{lastpage}
+\usepackage[automark,headsepline]{scrlayer-scrpage}
+\clearpairofpagestyles
+\renewcommand{\chapterpagestyle}{scrheadings}
+\cfoot{}
+\ihead{\headmark}
+\ohead{\pagemark\ af \pageref{LastPage}}
+\pagestyle{scrheadings}
+
 \usepackage{csquotes}
 \usepackage[
-  backend=biber,
-  style=alphabetic,
-  sorting=ynt]{biblatex}
+  backend=biber]{biblatex}
 \addbibresource{Bibliography.bib}
 
 \begin{document}
@@ -36,11 +46,13 @@
   \tableofcontents
 
   \subfile{Afsnit/Indledning/Indledning.tex}
-  \subfile{Afsnit/MonteCarloSimulering/MonteCarloSimulering.tex}
   \subfile{Afsnit/StokastiskeVariable/StokastiskeVariable.tex}
+  \subfile{Afsnit/MonteCarloSimulering/MonteCarloSimulering.tex}
   \subfile{Afsnit/Anvendelse/Anvendelse.tex}
   \subfile{Afsnit/Diskussion/Diskussion.tex}
   \subfile{Afsnit/Konklusion/Konklusion.tex}
+
+  \printbibliography
 
   \subfile{Bilag/Bilag.tex}
 

@@ -4,4 +4,43 @@
 
 \chapter{Stokastiske Variable}
 
+For at forstå Stokastiske Variabler kræves der en forståelse for nogle simplere begreber inden for statistiske. Disse begreber er udfaldsrum, delmængde, sandsynlighedsfunktion samt sandsynlighedsfelt. Disse begreber er essentielle inden for statistisk.
+
+\section{Udfaldsrum og delmængder}
+
+Der findes to type af udfaldsrum, henholdsvis diskret og kontinuert udfaldsrum. Forskellen på disse to er deres 
+
+Forskellen på disse to er måden at et endeligt udfaldsrum er tællelig til modsætning er et kontinuert. Et eksempel på et diskret udfaldsrum kunne være en seksidet terning. Denne seksidet terning vil have et udfaldsrum på formen $U = \{1,2,3,4,5,6\}$ hvor $u_i$ er et udfald udfaldsrummet $U$. Dette er et diskret endeligt udfaldsrum, dette skal forståes på den måde at udfaldsrummet ikke er et interval i de Reelle tal, men kun Heltal i intervallet en til seks $1 \geq u_i \leq 6 \quad \textrm{og} \quad u_i \in \mathbb{Z}$. Altså det er endelig fordi der kun er seks mulige udfald. Et eksempel på et kontinuert udfaldsrum kunne være højden af bygninger, der er ikke noget minimum højde forskel på bygninger. Altså udfaldsrummet kunne være $1 \geq u_i \leq 1000 \quad u_i \in \mathbb{R}$
+
+\section{Sandsynlighedsfunktion}
+
+Sandsynlighedsfunktion $P$ beskriver sandsynligheden for en givet mængde i udfaldsrummet $U$. For eksempel kunne $P(\{1,2\}) = 0.8$ og $P(3) = 0.2$ i udfaldsrummet $U = \{1,2,3\}$. Dette vil betyde at der er en meget støre sandsynelighed for $1$ eller $2$ end der for $3$. Nedenstående er additionsloven og den desuden gældende \cite{SC}.
+\begin{align}
+  P(1) + P(2) + P(3) &= 1 \\
+  P(\{1,2\}) + P(3) &= 1
+\end{align}
+Desuden kan $\{1,2\}$ også beskrives som en delmængde af U på formen $A = \{1,2\}$ af $U$ altså så det er gældende at
+\begin{equation}
+  P(A) = P(1) + P(2)
+\end{equation}
+
+\section{Sandsynlighedsfelt}
+
+Et sandsynlighedsfelt findes på to former, vi vil kun beskæftige os med det endelige sandsynlighedsfelt. Det endelig sandsynlighedsfelt $(U, P)$ er bestående af et udfaldsrum $U$ og en sandsyneligheds funktion $P$. Dette er derfor gældende for sandsynlighedsfeltet.
+\begin{equation}
+  0 \geq P(u_i) \leq 1 \quad \textrm{for ethvert udfald $\ u_i\ $ i U}
+\end{equation}
+\begin{equation}
+  P(U_1) + P(U_2) + ... + P(U_n) = 1
+\end{equation}
+De to udsagn udtrykker derved at sandsyneligheden for $P(U_i)$ er i intervallet $[0;1]$ samt at den samlede sandsynlighed for feltet er $1$, hvor $1 = 100\%$. 
+
+ et endeligt og et  er bestående af både et udfaldsrum og dens delmængder samt en sandsyneligheds funktion der beskrive sandsyneligheden for hvert given  \cite{SC}
+
+\section{Stokastiske variabler}
+
+Stokastiske variabler findes af to type der begge beskrives med $X$, disse to type er henholdsvis diskret og kontinuert. Diskret stokastiske variabler har et endeligt udfaldsrum,
+
+Stokastiske variabler opfører sig på en måde hvor $X$ variables tilstand er alle mulige udfald i udfaldsrummet $U$ i sandsynlighedsfeltet med sandsynelighederne $P(U_n)$
+
 \end{document}
