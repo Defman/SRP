@@ -2,15 +2,63 @@
 
 \begin{document}
 
-\chapter{Monte Carlo Algoritmer / Simulering}
+\chapter{Monte Carlo Metoden}
 
-Monte Carlo Metoden er en række metoder der kan bruges til at læse problemer der afhænger af en række tilfældige tilfælde. Monte Carlo tager udgangs punkt i at nogle problemer er nemmere at  +
+I dette afsnit vil opgaven komme ind på... \\
 
-Monte Carlo Metoden er en metode inden for statistiske til at løse umiddelbare umulige statistiske problemer. Metoden er empirisk og kan bruges til at lave et udsagn om sandsynelighed om he 
+Monte Carlo Metodens blev navngivet dette efter Stanislaw Ulams onkel som ofte spillede på Casino Monte Carlo i Monaco. Ulam var en af de forskere arbejde på Monte Carlo Metoden under Manhatten Projektet. Metoden blev udviklede for at kunne simulere neutron diffusion. Dette var nødvendigt at simulere på denne måde, da problemet var for komplekst til at kunne blive afledt algebragisk. Metoden blev først anvendt på gamle analog computere hvilket begrænsede kompleksiteten af simulationen \cite{AHF}. \\
 
-problemer der ikke kan løses teoratisk.
+Yderlig mere er Monte Carlo Metoden er også en algoritme, det betyder at det er en process som er udført i nogle logiske trin. Trin som beskrive gøremåden for metoden. En algoritme kunne f.eks. være trinnene involveret i at sortere et sæt kort. Lad et \"sæt\" være kortspillet og \"et element\" et kort i spillet, sortering af et sæt kort kan således udføres på følgende måde.
+\begin{enumerate}
+  \item Vælg et vilkårligt element $e_i$ fra sættet.
+  
+  \item Placere elementet bagest i sættet.
 
-Man kan udføre
+  \item Sammenlign nu $e_i$ med elementet lige før $e_{i-1}$ hvis $e_i > e_{i-1}$ bytter de plads. Dette gentages indtil $e_i < e_{i-1}$ eller $i = 0$.
+
+  \item Gentag denne process indtil kort spillet er sorteret
+\end{enumerate}
+Denne sorterings algoritme er også kaldet boblesortering og dets navn kommer af måden de elementer i sættet bobler til toppen. \cite{BS} \\
+
+\section{Plat eller Krone}
+Et eksempel på udførelse af Monte Carlo Simulering kunne være Plat eller Krone, spillets regler er som følgende.
+\begin{enumerate}
+  \item Hver spiller satser på en side af mønten.
+
+  \item Mønten kastes op i luften.
+
+  \item Vinderen er den spiller hvis sats er den side af mønten der vender op af.
+\end{enumerate}
+
+Man kan også beskrive Plat og Krone med et symmetrisk sandsynlighedsfelt $(U, P)$, hvor udfaldsrummet $U$ ville være $U = \{Plat, Krone\}$ og sandsynlighedsfunktionen $P$ hvor følgende er sandt da det er et symmetrisk sandsynlighedsfelt.
+\begin{equation}
+  P(Plat) = P(Krone) = \frac{1}{2}
+\end{equation}
+Vi kan desuden beskrive mønten med en stokastiske variable $X$. Den forventede værdi af $X$ kan ligedes beskrives som værende $\frac{1 + 2}{2} = 1.5$ hvis $Plat = 1$ og $Krone = 2$ altså den gennemsnitlig værdi af udfaldsrummet. \\
+
+Vi kan finde frem til en aproximering af den forventede værdi af $X$ ved brug af Monte Carlo Simulering. I den sammenhæng lad $\mathbb{E}[X]$ værende den forventede værdi af $X$. Vi kan derved opskrive følgende udsagn hvor $x_i$ er en konkret simulering af $X$.
+\begin{equation}
+  \mathbb{E}[X] = \sum\limits_{i=1}^n\frac{x_i}{n}
+\end{equation}
+Vi kan udfører en simulering der simulere $1000$ eksperimenter, hvor $X$ er uafhængig.
+\begin{lstlisting}
+  import random
+
+  random.seed(42)
+  print(sum([random.randint(1,2) for _ in range(1000)]) / 1000.000)
+\end{lstlisting}
+Dette vil give os $\mathbb{E}[X] = 1.519$, hvis vi udførte dette eksperiment 100 gange ville vi finde at vores resultat variere. Dette skyldes at $X$ er tilfældigt bestemt for hvert simulering og er uafhængig af forgående simulering, altså normal opførelse for en mønt \cite{NM}. \\
+
+\section{Numerisk integration}
+
+Det overstående eksempel med Plat eller Krone virker måske lidt dumt da vi med nemhed kan udlede det algebraisk, altså tage summen udfaldsrummet og dele med antallet af mulige udfald. Men et andet tilfælde hvor man kan anvende Monte Carlo Metoden er numerisk integration. I nogle tilfælde er det let at udlede integralet algebragisk, men der findes også tilfæde hvor det er umuligt. Disse funktioneners integraler kan udledes ved hjælp af numerisk metoder, her i blandt Monte Carlo Metoden. \\
+
+Lad os betragte en cirkel der befinder sig iden for et kvadratisk område, som set på nedenstående figur. \\
+
+Firgur \\
+
+Hvis vi ønsker at finde arealet af cirklen, ved brug af Monte Carlo Simulering, skal vi først bestemme udfaldsrummet. Udfaldsrummet for dette tilfæde er kvadraten hvor cirklen befinder sig inden for. Det vil sige at vi har et kontinuert udfaldsrum $U$ som indenholder uendelige punkter der befinder sig i kvadratet. Da vi skal simulere dette på en computer omdefinere vi udfaldsrummet til et diskret udfaldsrum, da en computere ikke kan håndtere infinitesimaler, men kun tal af en given størelse. Altså vi kunne vælge et udfaldsrum hvor vi har inddelt kvadraten $100 \times 100$ \\
+
 
 
 Hvis vi tager funktionen $f(x)=$, denne funktion er ikke diffrentierbar da den ikke er kontinuer og kan derfor ikke løses algebragisk. Men vi kan stadig finde dens integral ved brug af Monte Carlo. Vi vælger et tilfældigt punkt, dette punks x værdi bruger vi i funktionen, vi får der efter en y værdi, vi notere os derefter om denne y værdi er højere eller lavere end det tilfældige punkts y værdi. Vi gentage dette tusinds vis af gange til at vi har fået os et forholdshvis stort prøve område. Vi kan nu udregne dets integrale ved at tage arealet det rum vi valgte tilfældige punkter indenfor og derefter gange det med sandsyneligheden for at et punkt er inden for integralet af funktionen, altså sandsyneligheden for at det tilfældige punkt er u
