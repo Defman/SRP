@@ -3,6 +3,21 @@
 \begin{document}
 
 \chapter{Monte Carlo Lokalisering}
+Dette afsnit vil komme ind på hvordan en autonom robot kan implementere en Monte Carlo Algoritme for således at kunne lokalisere sig selv på et kendt kort. Denne Metoder er også kaldet Monte Carlo Lokalisering, og kræver  
+
+Hvis vi tager tager udgangspunkt i en autonom robot, der er har fire hjul og mindst to elektriske motorer med enkoder. Elektriske motorer med enkoder afgiver et elektrisk signal $n$ gange per total rotation af motorens akse, dette kunne være implementer ved brug af en hall sensor der måler på en magnet eller en optisk sensor der måler på et optisk gitter som der følger aksen. Således at robotten er i stand til at udregne hvor langt den har bevæget sig i en given retning. Denne længde kan udregnes, lad i denne udregning $d$ være diameteren af robottens hjul samt $n$ antallet af impulser per rotation samt $n_t$ værende et antal impulser målt efter en given tid. Længden $L$ som robotten har bevægede sig ved antallet målte impulser $n_t$ kan således udregnes på følgende måde:
+\begin{equation}
+  L = d \times \pi \times \frac{n_t}{n}
+\end{equation}
+Et eksempel på overstående formel, kunne være at robotten havde et sæt hjul med diameteren $5cm$ altså $d = 5cm$ samt en hallsensor der giver $20$ impulser per totale rotation af aksen, når robotten har bevægede sig $4512$ impulser kan vi udregne den længde robotten har bevægede sig:
+\begin{equation}
+  L = 5cm \times \pi \times \frac{4512}{20} = 3543.71cm = 35.4371m
+\end{equation}
+Vi kan desuden udregne vinklen robotten bevæger sig i, ved at... \\
+
+Desuden har robotten en sensor der kan måle farven på formen $(r,g,b)$ er hvad der befinder sig und
+
+Med udgangspunk i overstående robot der implementer et Dead-reckoning algoritme, kan vi lokalisere robotten på et kendt kort ved brug af Monte Carlo Lokalisering.
 
 Man kan anvende Monte Carlo Metoden til at lokalisere, f.eks. en autonom robot, på et kendt kort. Dette kan lade sig gøre ved brug af Monte Carlo Lokalisering, dette er også en form for partikelfilter. Grunden til at Monte Carlo lokalisering er et partikelfilter er grundet i måden hvorpå metoden lokalisere. Lad os sige vi har et sandsynlighedsfelt hvor udfaldsrummet $U$ er alle de mulig positioner. Lad $X$ være en stokastisk variabel i sandsynligheds feltet, altså så $X$ er en tilfældig mulig position for robotten på kortet. Vi kan nu lave et eksperiment, hvor $X$ bestemmes til et punkt i sandsynlighedsfeltet, vi kan nu udregne 
 
