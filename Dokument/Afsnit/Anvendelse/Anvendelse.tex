@@ -3,9 +3,9 @@
 \begin{document}
 
 \chapter{Monte Carlo Lokalisering}
-Dette afsnit vil komme ind på hvordan en autonom robot kan implementere en Monte Carlo Algoritme for således at kunne lokalisere sig selv på et kendt kort.  
+Dette afsnit vil komme ind på, hvordan en autonom robot kan implementere en Monte Carlo Algoritme for således at kunne lokalisere sig selv på et kendt kort.  
 
-Hvis vi tager tager udgangspunkt i en autonom robot, der er har fire hjul og mindst to elektriske motorer med enkoder. Elektriske motorer med enkoder afgiver et elektrisk signal $n$ gange per total rotation af motorens akse, dette kunne være implementeret ved brug af en hall sensor der måler på en magnet eller en optisk sensor der måler på et optisk gitter som der følger aksen. Således at robotten er i stand til at udregne hvor langt den har bevæget sig i en given retning. Denne længde kan udregne i den følgende udregning. Lad i denne udregning $d$ være diameteren af robottens hjul,lad $n$ være antallet af impulser per rotation og til sidst lad $n_t$ være et antal impulser målt efter en given tid. Længden $L$ som robotten har bevæget sig ved antallet målte impulser $n_t$ kan således udregnes på følgende måde:
+ Der tages udgangspunkt i en autonom robot, der har fire hjul og mindst to elektriskemotorer med enkoder. Elektriskemotorer med enkoder afgiver et elektrisk signal $n$ antal gange per total rotation af motorens akse. Dette kan eksempelvis være implementeret ved brug af en hall sensor, der måler på en magnet eller en optisk sensor, som måler på et optisk gitter der følger aksen. Således er robotten i stand til at udregne, hvor langt den har bevæget sig i en given retning. Denne længde udregnes i det følgende. Lad $d$ være diameteren af robottens hjul,lad $n$ være antallet af impulser per rotation, og lad til sidst $n_t$ være et antal impulser målt efter en given tid. Længden $L$, som robotten har bevæget sig ved antal målte impulser $n_t$, kan således udregnes på følgende måde:
 \begin{equation}
   L = d \times \pi \times \frac{n_t}{n}
 \end{equation}
@@ -39,11 +39,7 @@ Altså så vi har et kendt kort hvor der er $400$ fliser af forskelige farvers h
 
   \item Robotten laver en måling $m$ på formen $(r,g,b)$ på dens nuværende position
 
-<<<<<<< HEAD
-  \item Derefter laves en vægtet liste af fejlen mellem $m$ og $rgb(X)$ og punkterne $X$
-=======
   \item Målingen $m$ sammenlignes nu med $x_i$ på følgende måde $|m - x_i|$
->>>>>>> bc964aa79462ab4a4fca9e11563a89d9f756df02
 
   \item Et nyt sandsynlighedsfelt $\lambda$ hvor $P(x_i) = \frac{|m - x_i|}{s}$ hvor $s$ er summen af alle fejl fra forgående trin og $U$ er de forgående konkrete elementer $x_i$. Dette vil betyde at der er støre sandsynlighed for de punker med en stor fejl relativt til dem med en lav fejl
 
