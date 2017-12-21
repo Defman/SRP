@@ -75,11 +75,11 @@ Vi kan starte med at bestemme udfaldsrummet af den overstående figur, dette er 
 \begin{center}
   % Set A but not B
   \begin{tikzpicture}
-    \pgfmathsetseed{42}%
+    \pgfmathsetseed{42}
     \draw[outline] (0,0) circle (2cm) node {$A$};
     \draw (-2,-2) rectangle (2,2) node [text=black,above] {$U$};
     \foreach \x in {1,...,100} {
-      \fill (rand*2,rand*2)  circle[radius=0.5mm];
+      \fill (rand*2,rand*2) circle[radius=0.5mm];
     }
   \end{tikzpicture}
 \end{center}

@@ -22,7 +22,8 @@ Med et udgangspunk i overstående robot der implementer et Dead-reckoning algori
 \pgfmathdeclarerandomlist{Colors}{{red}{green}{blue}{purple}}
 
 \begin{center}
-\begin{tikzpicture}[scale=0.5]
+\begin{tikzpicture}[scale=0.25]
+  \pgfmathsetseed{42}
   \foreach \x in {0,...,19} {
     \foreach \y in {0,...,19} {
       \pgfmathrandomitem{\RandomColor}{Colors} 
@@ -49,10 +50,22 @@ Altså så vi har et kendt kort hvor der er $400$ fliser af forskelige farvers h
 
   \item Der bestemmes nu $\lambda_n$, altså samme antal som blev fjernet, punktern fra et sandsynlighedsfelt hvor $P(x_i) = 1-\frac{|m-x_i|}{s}$, altså så punker med en lav fejl har en højere sandsynlighed. En af de omliggende fliser fra dette punkt som robotten kunne have bevæget sig over på vælges og tilføjes til udfaldsrummet $\lambda_u$. Der efter gentages de forgående tre trin det antal gange robotten bevæger sig.
 \end{enumerate}
-Hvis man fulgte overstående trin, vil man finde at man starter ud med en masse punker der ikke er koncentration hvor robotten rent faktisk befinder sig, men som processen gentages bliver der dannet en koncentration af punkter hvor robotten befinder sig, nedenstående figur illustreret dette.
-
-{\Huge figure}
-
+Hvis man fulgte overstående trin, vil man finde at man starter ud med en masse punker der ikke er koncentration hvor robotten rent faktisk befinder sig, men som processen gentages bliver der dannet en koncentration af punkter hvor robotten befinder sig, nedenstående figurer illustreret dette hvor de sorte punkter er mulige position for robotten og det orange punkt er robotten.
+\begin{center}
+  \begin{tikzpicture}[scale=0.25]
+    \pgfmathsetseed{42}
+    \foreach \x in {0,...,19} {
+      \foreach \y in {0,...,19} {
+        \pgfmathrandomitem{\RandomColor}{Colors} 
+        \fill [\RandomColor] (\x,\y) rectangle (\x+1,\y+1);
+      }
+    }
+    \foreach \x in {0,...,19} {
+      \fill ({floor((rand + 1)*10)+0.5},{floor((rand + 1)*10)+0.5}) circle[radius=2mm];
+    }
+    \fill[orange] ({floor((rand + 1)*10)+0.5},{floor((rand + 1)*10)+0.5}) circle[radius=3mm];
+  \end{tikzpicture}
+\end{center}
 I nedenstående sektion, vil jeg komme ind på en teoretisk implementation af dette i Python.
 
 \section{implementering}
