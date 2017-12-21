@@ -47,8 +47,13 @@ Altså så vi har et kendt kort hvor der er $400$ fliser af forskelige farvers h
 
   \item Robotten bevæger sig nu en flise i hvilken som helst retning, hvor robotten stadig vil være inden for fliserne. Alle resterende punkter i $\lambda$ flyttes samme retning og længde 
 
-  \item Der bestemmes nu $\lambda_n$, altså samme antal som blev fjernet, punktern fra et sandsynlighedsfelt hvor $P(x_i) = 1-\frac{|m-x_i|}{s}$ og tilføjes til udfaldsrummet $\lambda_u$. De forgående tre trin gentages nu et utal af gange.
+  \item Der bestemmes nu $\lambda_n$, altså samme antal som blev fjernet, punktern fra et sandsynlighedsfelt hvor $P(x_i) = 1-\frac{|m-x_i|}{s}$, altså så punker med en lav fejl har en højere sandsynlighed. En af de omliggende fliser fra dette punkt som robotten kunne have bevæget sig over på vælges og tilføjes til udfaldsrummet $\lambda_u$. Der efter gentages de forgående tre trin det antal gange robotten bevæger sig.
 \end{enumerate}
+Hvis man fulgte overstående trin, vil man finde at man starter ud med en masse punker der ikke er koncentration hvor robotten rent faktisk befinder sig, men som processen gentages bliver der dannet en koncentration af punkter hvor robotten befinder sig, nedenstående figur illustreret dette.
+
+{\Huge figure}
+
+I nedenstående sektion, vil jeg komme ind på en teoretisk implementation af dette i Python.
 
 \section{implementering}
 
