@@ -5,19 +5,9 @@
 \chapter{Monte Carlo Lokalisering}
 Dette afsnit vil komme ind på, hvordan en autonom robot kan implementere en Monte Carlo Algoritme for således at kunne lokalisere sig selv på et kendt kort.  
 
- Der tages udgangspunkt i en autonom robot, der har fire hjul og mindst to elektriskemotorer med enkoder. Elektriskemotorer med enkoder afgiver et elektrisk signal $n$ antal gange per total rotation af motorens akse. Dette kan eksempelvis være implementeret ved brug af en hall sensor, der måler på en magnet eller en optisk sensor, som måler på et optisk gitter der følger aksen. Således er robotten i stand til at udregne, hvor langt den har bevæget sig i en given retning. Denne længde udregnes i det følgende. Lad $d$ være diameteren af robottens hjul,lad $n$ være antallet af impulser per rotation, og lad til sidst $n_t$ være et antal impulser målt efter en given tid. Længden $L$, som robotten har bevæget sig ved antal målte impulser $n_t$, kan således udregnes på følgende måde:
-\begin{equation}
-  L = d \times \pi \times \frac{n_t}{n}
-\end{equation}
-Et eksempel på overstående formel, kunne være at robotten havde et sæt hjul med diameteren $5cm$ altså $d = 5cm$ samt en hallsensor der giver $20$ impulser per totale rotationer af aksen. Når robotten har bevæget sig $4512$ impulser kan vi udregne den længde robotten har bevæget sig:
-\begin{equation}
-  L = 5cm \times \pi \times \frac{4512}{20} = 3543.71cm = 35.4371m
-\end{equation}
-Vi kan også udregne vinklen $\theta$ for robotten, da dette er en simpel implementering af Dead-Reckoning vil vi kun udføre rotationer, når robotten står stille.
+ Der tages udgangspunkt i en autonom robot, der har fire hjul og mindst to elektriskemotorer med enkoder. Elektriskemotorer med enkoder afgiver et elektrisk signal $n$ antal gange per total rotation af motorens akse. Dette kan eksempelvis være implementeret ved brug af en hall sensor, der måler på en magnet eller en optisk sensor, som måler på et optisk gitter der følger aksen. Således er robotten i stand til at udregne, hvor langt den har bevæget sig i en given retning. Denne robot kunne f.eks. være en reklame robot, den kører rundt i et givent område og har en bakke med chokolade som folk kan tage af. Dette område kunne være en banegård eller en butik. Robotten har her til en sensor der er placeret på undersiden, denne sensoren måler farven af hvad robotten bevæger sig på. Sensoren måler et resultat på formen $(r,g,b)$, hvor $(0,0,0)$ vil være sort og $(255,0,0)$ ville være en rød farve. De forskelige farver der måles kunne være forskelige nuancer eller farver fliser \cite{DR}.
 
-Desuden har robotten en sensor der er placeret under den, denne sensoren måler farven af hvad robotten bevæger sig på. Sensoren måler et resultat på formen $(r,g,b)$, hvor $(0,0,0)$ vil være sort og $(255,0,0)$ ville være en rød farve. 
-
-Med et udgangspunk i overstående robot der implementerer et Dead-Reckoning algoritme, kan vi lokalisere robotten på et kendt kort ved brug af Monte Carlo Lokalisering. Det kendte kort i dette konkrete eksempel er et kort der er kvadratisk af $20 \times 20$ meter og er bestående af fliser med forskellige farver, disse farver er henholdsvis rød, grøn, blå og lilla, som illustreret på nedenstående figur.
+Med et udgangspunk i overstående robot der implementerer et Dead-Reckoning algoritme, kan vi lokalisere robotten på et kendt område ved brug af Monte Carlo Lokalisering. Det kendte område kan betragtes som et kort, i dette konkrete eksempel er kortet kvadratisk af $20 \times 20$ meter og er bestående af fliser med forskellige farver, disse farver er henholdsvis rød, grøn, blå og lilla, som illustreret på nedenstående figur.
 
 \pgfmathdeclarerandomlist{Colors}{{red}{green}{blue}{purple}}
 
@@ -33,7 +23,9 @@ Med et udgangspunk i overstående robot der implementerer et Dead-Reckoning algo
 \end{tikzpicture}
 \end{center}
 
-Altså har vi et kendt kort hvor der er $400$ fliser af forskelige farver hvilke også fungerer som punkter. Dette er repræsenteret i vores udfaldsrum $U$, hvor dets elementer er punkter på formen $u_i = (x,y)$ og $rgb(u_i)$ er farven i RGB, altså hvis vi har en rød flise på punktet $(1,2)$ vil $rgb((1,2)) = (255,0,0)$. Dette udfaldsrum er en del af et symmetrisk sandsynlighedsfelt, hvilket betyder at robotten har en lige stor sandsynlighed for at befinde sig på et givent punkt. Ud fra dette sandsynlighedsfelt kan vi definere en stokastisk variabel $X$ som kan tage hvilket som helst punkt i udfaldsrummet $U$, hvor $x_i$ er et konkrete punkt. Nedenstående trin er derfor involverede i at lokalisere robotten på kortet.
+Altså vi har et kendt kort hvor der er $400$ fliser af forskelige farver hvilke også fungerer som punkter. Dette er repræsenteret i vores udfaldsrum $U$. Vores udfaldsrums elementer er punkter på formen $u_i = (x,y)$ og $rgb(u_i)$ er flisens farven på formen RGB, altså hvis vi har en rød flise på punktet $(1,2)$ vil $rgb((1,2)) = (255,0,0)$. Dette udfaldsrum er en del af et sandsynlighedsfelt, hvilket betyder at robotten har en sandsynlighed for at befinde sig på et givent punkt. Ud fra dette sandsynlighedsfelt kan vi definere en stokastisk variabel $X$ som kan tage hvilket som helst punkt i udfaldsrummet $U$, hvor $x_i$ er et konkrete punkt. Algoritmen består i et løbende antal iterationer, hvor under hver iteration bliver der simuleret et $n$ antal konkrete stokastisk variabler $x_i$. Disse konkrete punkter bliver også kaldet for partikler, hvilket bliver tydeligt på de kommende illustreringer. Desuden er sandsynlighedsfunktionen $P$ afhængig af om der er tale om den første iteration af algoritmen eller om det er løbende iterationer. For første iteration er sandsynlighedsfunktionen den samme som ved et symmetrisk sandsynlighedsfelt, altså der er tale om en jævn fordeling af partiklerne, men de efterfølgende iterationer er afhængig af kun og kun den forgående iterations partikler. sandsynlighedsfunktionen er afhængig på følgende måde $P(x_i|x_{i-1})$ hvor $x_{i-1}$ er alle de konkrete 
+
+Nedenstående trin er derfor involverede i at lokalisere robotten på kortet.
 
 \begin{enumerate}
   \item $n$ tilfældige konkrete stokastisk variabler $x_i$ bestemmes.
@@ -67,7 +59,5 @@ Hvis man fulgte overstående trin, vil man finde at man starter ud med en masse 
   \end{tikzpicture}
 \end{center}
 I nedenstående sektion, vil jeg komme ind på en teoretisk implementation af dette i Python.
-
-\section{implementering}
 
 \end{document}
