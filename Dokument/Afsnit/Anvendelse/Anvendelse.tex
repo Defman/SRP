@@ -10,9 +10,17 @@ Monte Carlo Lokalisering består af et sæt af trin som gentages hver gang den a
 
 Lad os sige at vi har et kvadratisk område med forskelig farvet fliser, som set på nedenstående figur. \\
 
-\Huge{FIGUR!} \\
-
 \section{Opbygning}
+
+\begin{enumerate}
+  \item Først bestemmes et sæt af stokastisk variabler $X$, som er punkter på formen $(x,y)$ i udfaldsrummet $U$ med højst koncentration omkring de punkter med lavest afvigelse fra målingen $m$
+
+  \item Robotten laver en måling $m$ på formen $(r,g,b)$ på dens nuværende position
+
+  \item Da laves nu en vægtede liste af fejlen mellem $m$ og $rgb(X)$ og punkterne $X$
+
+  \item n antal punktere fjernes
+\end{enumerate}
 
 \section{implementering}
 
