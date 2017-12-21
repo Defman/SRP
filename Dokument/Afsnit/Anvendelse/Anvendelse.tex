@@ -13,11 +13,11 @@ Et eksempel på overstående formel, kunne være at robotten havde et sæt hjul 
 \begin{equation}
   L = 5cm \times \pi \times \frac{4512}{20} = 3543.71cm = 35.4371m
 \end{equation}
-Vi kan også udregne vinklen $\theta$ for robotten, da dette er en simpel implementering af Dead-reckoning vil vi kun udføre rotationer, når robotten står stille.
+Vi kan også udregne vinklen $\theta$ for robotten, da dette er en simpel implementering af Dead-Reckoning vil vi kun udføre rotationer, når robotten står stille.
 
 Desuden har robotten en sensor der er placeret under den, denne sensoren måler farven af hvad robotten bevæger sig på. Sensoren måler et resultat på formen $(r,g,b)$, hvor $(0,0,0)$ vil være sort og $(255,0,0)$ ville være en rød farve. 
 
-Med et udgangspunk i overstående robot der implementer et Dead-reckoning algoritme, kan vi lokalisere robotten på et kendt kort ved brug af Monte Carlo Lokalisering. Det kendte kort i dette konkrete eksempel er et kort der er kvadratisk af $20 \times 20$ meter og er bestående af fliser med forskelig farver, disse farver er henholdsvis rød, grøn, blå og lilla, som illustreret på nedenstående figur.
+Med et udgangspunk i overstående robot der implementerer et Dead-Reckoning algoritme, kan vi lokalisere robotten på et kendt kort ved brug af Monte Carlo Lokalisering. Det kendte kort i dette konkrete eksempel er et kort der er kvadratisk af $20 \times 20$ meter og er bestående af fliser med forskellige farver, disse farver er henholdsvis rød, grøn, blå og lilla, som illustreret på nedenstående figur.
 
 \pgfmathdeclarerandomlist{Colors}{{red}{green}{blue}{purple}}
 
@@ -33,24 +33,24 @@ Med et udgangspunk i overstående robot der implementer et Dead-reckoning algori
 \end{tikzpicture}
 \end{center}
 
-Altså så vi har et kendt kort hvor der er $400$ fliser af forskelige farvers hvilke også er punkter, dette repræsenteret vores udfaldsrum $U$, hvor dets elementer er punkter på formen $u_i = (x,y)$ og $rgb(u_i)$ er farven i RGB, altså hvis vi har en rød flise på punktet $(1,2)$ vil $rgb((1,2)) = (255,0,0)$. Dette udfaldsrum er en del af et symmetrisk sandsynlighedsfelt, hvilket betyder at robotten har en lige stor sandsynlighed for at befinde sig på et givent punk. Ud fra dette sandsynlighedsfelt kan vi definere en stokastisk variabel $X$ som kan tage hvilket som helst punkt i udfaldsrummet $U$, hvor $x_i$ er et konkrete punkt. Følgende nedenstående trin er derfor involverede i at lokalisere robotten på kortet.
+Altså har vi et kendt kort hvor der er $400$ fliser af forskelige farver hvilke også fungerer som punkter. Dette er repræsenteret i vores udfaldsrum $U$, hvor dets elementer er punkter på formen $u_i = (x,y)$ og $rgb(u_i)$ er farven i RGB, altså hvis vi har en rød flise på punktet $(1,2)$ vil $rgb((1,2)) = (255,0,0)$. Dette udfaldsrum er en del af et symmetrisk sandsynlighedsfelt, hvilket betyder at robotten har en lige stor sandsynlighed for at befinde sig på et givent punkt. Ud fra dette sandsynlighedsfelt kan vi definere en stokastisk variabel $X$ som kan tage hvilket som helst punkt i udfaldsrummet $U$, hvor $x_i$ er et konkrete punkt. Nedenstående trin er derfor involverede i at lokalisere robotten på kortet.
 
 \begin{enumerate}
-  \item $n$ tilfældige konkrete stokastisk variabel $x_i$ bestemmes.
+  \item $n$ tilfældige konkrete stokastisk variabler $x_i$ bestemmes.
 
   \item Robotten laver en måling $m$ på formen $(r,g,b)$ på dens nuværende position
 
   \item Målingen $m$ sammenlignes nu med $x_i$ på følgende måde $|m - x_i|$
 
-  \item Et nyt sandsynlighedsfelt $\lambda$ hvor $P(x_i) = \frac{|m - x_i|}{s}$ hvor $s$ er summen af alle fejl fra forgående trin og $U$ er de forgående konkrete elementer $x_i$. Dette vil betyde at der er støre sandsynlighed for de punker med en stor fejl relativt til dem med en lav fejl
+  \item Et nyt sandsynlighedsfelt $\lambda$ hvor $P(x_i) = \frac{|m - x_i|}{s}$ hvor $s$ er summen af alle fejl fra forgående trin og $U$ er de forgående konkrete elementer $x_i$. Dette vil betyde at der er større sandsynlighed for de punkter med en stor fejl relativt til dem med en lav fejl
 
   \item Der bestemmes nu $\lambda_n$ tilfældige punkter fra $\lambda$, hvor $ \lambda_n < n$, og fjernes fra $\lambda_U$
 
-  \item Robotten bevæger sig nu en flise i hvilken som helst retning, hvor robotten stadig vil være inden for fliserne. Alle resterende punkter i $\lambda$ flyttes samme retning og længde 
+  \item Robotten bevæger sig nu en flise i hvilken som helst retning, hvor robotten stadig vil være inden for fliserne. Alle resterende punkter i $\lambda$ flyttes i samme retning og længde 
 
-  \item Der bestemmes nu $\lambda_n$, altså samme antal som blev fjernet, punktern fra et sandsynlighedsfelt hvor $P(x_i) = 1-\frac{|m-x_i|}{s}$, altså så punker med en lav fejl har en højere sandsynlighed. En af de omliggende fliser fra dette punkt som robotten kunne have bevæget sig over på vælges og tilføjes til udfaldsrummet $\lambda_u$. Der efter gentages de forgående tre trin det antal gange robotten bevæger sig.
+  \item Der bestemmes nu $\lambda_n$, altså samme antal som blev fjernet, punkterne fra et sandsynlighedsfelt hvor $P(x_i) = 1-\frac{|m-x_i|}{s}$, altså så punkter med en lav fejl har en højere sandsynlighed. En af de omliggende fliser fra dette punkt som robotten kunne have bevæget sig over vælges og tilføjes til udfaldsrummet $\lambda_u$. Derefter gentages de forgående tre trin det antal gange robotten bevæger sig.
 \end{enumerate}
-Hvis man fulgte overstående trin, vil man finde at man starter ud med en masse punker der ikke er koncentration hvor robotten rent faktisk befinder sig, men som processen gentages bliver der dannet en koncentration af punkter hvor robotten befinder sig, nedenstående figurer illustreret dette hvor de sorte punkter er mulige position for robotten og det orange punkt er robotten.
+Hvis man fulgte overstående trin, vil man finde at man starter ud med en masse punkter spredt ud over hele kortet, men som processen gentages bliver der dannet en koncentration af punkter hvor robotten faktisk befinder sig. Nedenstående figurer illustrerer dette, hvor de sorte punkter er mulige positioner for robotten og det orange punkt er robotten.
 \begin{center}
   \begin{tikzpicture}[scale=0.25]
     \pgfmathsetseed{42}
