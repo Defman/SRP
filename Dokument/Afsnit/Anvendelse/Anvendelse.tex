@@ -32,16 +32,26 @@ Med et udgangspunk i overstående robot der implementer et Dead-reckoning algori
 \end{tikzpicture}
 \end{center}
 
-Altså så vi har et kendt kort hvor der er $400$ fliser eller punkter af forskelige farvers, dette kan repræsenteret som vores udfaldsrum $U$, hvor dets elementer er punkter på formen $P = (x,y)$. Dette udfaldsrum er en del af et symmetrisk sandsynlighedsfelt, hvilket betyder at robotten har en lige stor sandsynlighed for at befinde sig på et givent punk. Ud fra dette sandsynlighedsfelt kan vi definere en stokastisk variabel $X$ som kan tage hvilket som helst Punkt i udfaldsrummet $U$, hvor $x_i$ er et konkrete punkt. Følgende nedenstående trin er derfor involverede i at lokalisere robotten på kortet.
+Altså så vi har et kendt kort hvor der er $400$ fliser af forskelige farvers hvilke også er punkter, dette repræsenteret vores udfaldsrum $U$, hvor dets elementer er punkter på formen $u_i = (x,y)$ og $rgb(u_i)$ er farven i RGB, altså hvis vi har en rød flise på punktet $(1,2)$ vil $rgb((1,2)) = (255,0,0)$. Dette udfaldsrum er en del af et symmetrisk sandsynlighedsfelt, hvilket betyder at robotten har en lige stor sandsynlighed for at befinde sig på et givent punk. Ud fra dette sandsynlighedsfelt kan vi definere en stokastisk variabel $X$ som kan tage hvilket som helst punkt i udfaldsrummet $U$, hvor $x_i$ er et konkrete punkt. Følgende nedenstående trin er derfor involverede i at lokalisere robotten på kortet.
 
 \begin{enumerate}
-  \item Først bestemmes et sæt af stokastisk variabler $X$, som er punkter på formen $(x,y)$ i udfaldsrummet $U$ med højst koncentration omkring de punkter med lavest afvigelse fra målingen $m$
+  \item $n$ tilfældige konkrete stokastisk variabel $x_i$ bestemmes.
 
   \item Robotten laver en måling $m$ på formen $(r,g,b)$ på dens nuværende position
 
+<<<<<<< HEAD
   \item Derefter laves en vægtet liste af fejlen mellem $m$ og $rgb(X)$ og punkterne $X$
+=======
+  \item Målingen $m$ sammenlignes nu med $x_i$ på følgende måde $|m - x_i|$
+>>>>>>> bc964aa79462ab4a4fca9e11563a89d9f756df02
 
-  \item n antal punkter fjernes
+  \item Et nyt sandsynlighedsfelt $\lambda$ hvor $P(x_i) = \frac{|m - x_i|}{s}$ hvor $s$ er summen af alle fejl fra forgående trin og $U$ er de forgående konkrete elementer $x_i$. Dette vil betyde at der er støre sandsynlighed for de punker med en stor fejl relativt til dem med en lav fejl
+
+  \item Der bestemmes nu $\lambda_n$ tilfældige punkter fra $\lambda$, hvor $ \lambda_n < n$, og fjernes fra $\lambda_U$
+
+  \item Robotten bevæger sig nu en flise i hvilken som helst retning, hvor robotten stadig vil være inden for fliserne. Alle resterende punkter i $\lambda$ flyttes samme retning og længde 
+
+  \item Der bestemmes nu $\lambda_n$, altså samme antal som blev fjernet, punktern fra et sandsynlighedsfelt hvor $P(x_i) = 1-\frac{|m-x_i|}{s}$ og tilføjes til udfaldsrummet $\lambda_u$. De forgående tre trin gentages nu et utal af gange.
 \end{enumerate}
 
 \section{implementering}
