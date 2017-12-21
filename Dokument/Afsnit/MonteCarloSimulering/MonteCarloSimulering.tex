@@ -8,7 +8,7 @@ I dette afsnit vil opgaven komme ind på... \\
 
 Monte Carlo Metoden har sit navn efter Stanislaw Ulams onkel, som ofte spillede på Casino Monte Carlo i Monaco. Metoden refererer herved til de sandsynligheder og de tilfældige udkom der kan finde sted i sådanne spil. Ulam var en af de forskere der arbejdede på Monte Carlo Metoden under Manhatten Projektet, som blev iværksat i 1942 \cite{MSD}. Metoden blev udviklet for at kunne simulere neutroners diffusion. Det var nødvendigt at udvikle og benytte denne metode, da problemet var for komplekst til at kunne blive afledt algebragisk eller blive løst med datidige metoder. Metoden blev først anvendt på gamle analoge computere, hvilket begrænsede kompleksiteten af simulationen \cite{AHF}. \\
 
-Ydermere er Monte Carlo Metoden også en algoritme, hvilket betyder at det er en process som er udført i nogle logiske trin, trin som beskriver udførelse af metoden. En algoritme kunne f.eks. være trinnene involveret i at sortere et sæt kort. Lad kortspillet være et sæt kort og et element værende ét enkelt spillekort, kortspillet kan således sorteres på følgende måde.
+Ydermere er Monte Carlo Metoden også en algoritme, hvilket betyder at det er en process som er udført i nogle logiske trin, trin som beskriver udførelse af metoden. En algoritme kunne f.eks. være trinene involveret i at sortere et sæt kort. Lad kortspillet være et sæt kort og et element værende ét enkelt spillekort, kortspillet kan således sorteres på følgende måde:
 \begin{enumerate}
   \item Vælg et vilkårligt element $e_i$ fra sættet.
   
@@ -18,10 +18,10 @@ Ydermere er Monte Carlo Metoden også en algoritme, hvilket betyder at det er en
 
   \item Gentag denne process indtil kortspillet er sorteret
 \end{enumerate}
-Denne sorterings algoritme er også kaldet boblesortering og dennes navn kommer af måden de elementer i sættet bobler til toppen. \cite{BS} \\
+Denne sorterings algoritme er også kaldet boblesortering og dennes navn kommer af måden elementerne i sættet bobler til toppen. \cite{BS} \\
 
 \section{Plat eller Krone}
-Et eksempel på udførelse af Monte Carlo Simulering kunne være spillet Plat eller Krone, spillets regler er som følgende.
+Et eksempel på udførelse af Monte Carlo Simulering kunne være spillet Plat eller Krone, spillets regler er som følgende:
 \begin{enumerate}
   \item Hver spiller satser på en side af mønten.
 
@@ -30,13 +30,13 @@ Et eksempel på udførelse af Monte Carlo Simulering kunne være spillet Plat el
   \item Vinderen er den spiller hvis sats er den side af mønten der vender op af.
 \end{enumerate}
 
-Man kan også beskrive Plat og Krone med et symmetrisk sandsynlighedsfelt $(U, P)$, hvor udfaldsrummet $U$ ville være $U = \{Plat, Krone\}$ og sandsynlighedsfunktionen $P$ hvor følgende er sandt da det er et symmetrisk sandsynlighedsfelt.
+Man kan også beskrive Plat og Krone med et symmetrisk sandsynlighedsfelt $(U, P)$, hvor udfaldsrummet $U$ ville være $U = \{Plat, Krone\}$ og sandsynlighedsfunktionen $P$ hvor følgende er sandt da det er et symmetrisk sandsynlighedsfelt:
 \begin{equation}
   P(Plat) = P(Krone) = \frac{1}{2}
 \end{equation}
 Vi kan desuden beskrive mønten med en stokastiske variable $X$. Den forventede værdi af $X$ kan ligedes beskrives som værende $\mathbb{E}[X] = \frac{1 + 2}{2} = 1.5$ hvis $Plat = 1$ og $Krone = 2$ altså den gennemsnitlig værdi af udfaldsrummet. \\
 
-Vi kan finde frem til en approximering af den forventede værdi af $X$ ved brug af Monte Carlo Simulering. I den sammenhæng lad $\mathbb{E}[X]$ værende den forventede værdi af $X$. Vi kan derved opskrive følgende udsagn hvor $x_i$ er en konkret simulering af $X$.
+Vi kan finde frem til en approximering af den forventede værdi af $X$ ved brug af Monte Carlo Simulering. I den sammenhæng lad $\mathbb{E}[X]$ være den forventede værdi af $X$. Vi kan derved opskrive følgende udsagn hvor $x_i$ er en konkret simulering af $X$:
 \begin{equation}
   \mathbb{E}[X] = \sum\limits_{i=1}^n\frac{x_i}{n}
 \end{equation}
@@ -52,9 +52,9 @@ Dette vil give os $\mathbb{E}[X] = 1.519$, hvis vi udførte dette eksperiment 10
 
 \section{Numerisk integration}
 
-Det overstående eksempel med Plat eller Krone virker måske lidt dumt da vi med nemhed kan udlede det algebraisk, altså tage summen af udfaldsrummet og dele med antallet af mulige udfald. Men et andet tilfælde hvor man kan anvende Monte Carlo Metoden er numerisk integration. I nogle tilfælde er det let at udlede integralet algebragisk, men der findes også tilfæde hvor det er umuligt. Disse funktioners integraler kan udledes ved hjælp af numeriske metoder, her i blandt Monte Carlo Metoden også kaldet Hit-or-Miss. \cite{SBM} \\
+Det overstående eksempel med Plat eller Krone virker måske lidt dumt da vi med nemhed kan udlede det algebraisk, altså tage summen af udfaldsrummet og dele med antallet af mulige udfald. Men et andet tilfælde hvor man kan anvende Monte Carlo Metoden er numerisk integration. I nogle tilfælde er det let at udlede integralet algebragisk, men der findes også tilfæde hvor det er umuligt. Disse funktioners integraler kan udledes ved hjælp af numeriske metoder, heriblandt Monte Carlo Metoden også kaldet Hit-or-Miss. \cite{SBM} \\
 
-Lad os betragte enheds cirkel der befinder sig inden for en kvadrat af med dimensionerne $2\times 2$, denne figurs integral kan let udledes men er valgt for nemheds skyld.\\
+Lad os betragte enhedscirkelen der befinder sig inden for et kvadrat med dimensionerne $2\times 2$, denne figurs integral kan let udledes men er valgt for nemheds skyld.\\
 
 \colorlet{circle edge}{blue!50}
 \colorlet{circle area}{blue!20}
@@ -70,7 +70,7 @@ Lad os betragte enheds cirkel der befinder sig inden for en kvadrat af med dimen
 \end{tikzpicture}
 \end{center}
 
-Vi kan starte med at bestemme udfaldsrummet af den overstående figur, dette er $U$ og er alle de punkter der findes i kvadratets plan. Det integral vi ønsker at finde er cirklen, lad cirklen være delmængde $A$. Desuden er sandsynligheden $P$ for alle udfald i udfaldsrummet $U$ lige, altså for to given udfald i $U$ er $P(U_1) = P(U_2)$. Altså dette betyder at der er tale om et symmetrisk sandsynlighedsfelt, med et udfaldsrum der er bestående af punkter der findes på kvadratets plan. Den stokastiske variable $X$ vil lige ledes repræsentere et muligt punkt på kvadratets plan. Dette felt er i teorien et kontinuert sandsynlighedsfelt, hvilket også ville gøre vores stokastiske variable til en kontinuer variable. Hvis vi har $n$ stokastiske variabler $X$ og $n'$ betegner de stokastiske variabler der ligger inden for cirklens areal, altså således at hvis $X = (0.5;0.5)$ vil det være et udfald i delmængden $A$. Dette betyder også alle elementer i delmængden $A$ vil opfylde $a_ix^2+a_iy^2 \leq 1^2$, hvor $a_i$ er et konkret tilfælde og $a_ix$ er dets $x$ koordinat samt $a_iy$ er dets $y$ koordinat. Nedenstående figur viser et eksempel på $n$ antal konkrete stokastiske variabler $x_i$ i udfaldsrummet $U$ hvor $n'$ er de konkrete $x_i$ som befinder sig i $A$.
+Vi kan starte med at bestemme udfaldsrummet af den overstående figur, dette er $U$ og er alle de punkter der findes i kvadratets plan. Det integral vi ønsker at finde er cirklen, hvorfor vi lader cirklen være delmængde $A$. Desuden er sandsynligheden $P$ for alle udfald i udfaldsrummet $U$ lige, altså for to givne udfald i $U$ er $P(U_1) = P(U_2)$. Dette betyder at der er tale om et symmetrisk sandsynlighedsfelt, med et udfaldsrum der er bestående af punkter der findes på kvadratets plan. Den stokastiske variabel $X$ vil ligeledes repræsentere et muligt punkt på kvadratets plan. Dette felt er i teorien et kontinuert sandsynlighedsfelt, hvilket også ville gøre vores stokastiske variabel til en kontinuerlig variabel. Hvis vi har $n$ stokastiske variabler $X$ og $n'$ betegner de stokastiske variabler der ligger inden for cirklens areal, altså således at hvis $X = (0.5;0.5)$ vil det være et udfald i delmængden $A$. Dette betyder at alle elementer i delmængden $A$ vil opfylde $a_ix^2+a_iy^2 \leq 1^2$, hvor $a_i$ er et konkret tilfælde og $a_ix$ er dets $x$ koordinat samt $a_iy$ er dets $y$ koordinat. Nedenstående figur viser et eksempel på $n$ antal konkrete stokastiske variabler $x_i$ i udfaldsrummet $U$ hvor $n'$ er de konkrete $x_i$ som befinder sig i $A$.
 
 \begin{center}
   % Set A but not B
@@ -104,9 +104,9 @@ kvadrattet = [(random.uniform(-1,1),
 cirklen = [p for p in kvadrattet
             if p[0]*p[0] + p[1]*p[1] <= 1]
 
-nk = len(kvadrattet) # lad dette vaere n
-nc = len(cirklen)    # lad dette vaere n'
-a = 2 * 2            # lad dette vaere arealet af kvadrattet
+nk = len(kvadrattet) # lad dette være n
+nc = len(cirklen)    # lad dette være n'
+a = 2 * 2            # lad dette være arealet af kvadrattet
 
 print("areal = {:d}/{:d}*{:d}={:f}".format(nc, nk, a, nc/nk*a))
 \end{lstlisting}
