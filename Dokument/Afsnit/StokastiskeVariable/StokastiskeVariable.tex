@@ -2,24 +2,24 @@
 
 \begin{document}
 
-\chapter{Stokastiske Variable}
+\chapter{Stokastiske variabler}
 
-En væsentlig del af Monte Carlo Metodens teori og praksis bygger på Stokastiske Variabler. For at forstå Stokastiske Variabler kræves der en forståelse for nogle simplere begreber indenfor statistik. Disse begreber er udfaldsrum, delmængde, sandsynlighedsfunktion samt sandsynlighedsfelt. De nævnte begreber er også essentielle inden for statistik generelt.
+En væsentlig del af Monte Carlo Metodens teori og praksis bygger på stokastiske variabler. For at forstå stokastiske variabler kræves der en forståelse for simplere begreber indenfor statistik. Disse begreber er: udfaldsrum, delmængde, sandsynlighedsfunktion samt sandsynlighedsfelt. Disse begreber redegøres der for i nedenstående afsnit.
 
 \section{Udfaldsrum og delmængder}
 
-Der findes to typer af udfaldsrum, henholdsvis et diskret og kontinuert udfaldsrum. Forskellen på disse to er at der i et diskret udfaldsrum kun er et givent antal mulige udfald. Et eksempel på et diskret udfaldsrum kunne være en sekssidet terning. Denne sekssidet terning vil have et udfaldsrum $U$ der indeholder elementerne $1,2,3,4,5,6,7$ dette kan skrives som $U = \{1,2,3,4,5,6\}$. Altså vi har tale om et udfaldsrum med længden seks, hvilket skrives $|U| = 6$ eller som $n$. Hvorimod et kontinuert udfaldsrum kunne være højden på elever i en klasse, udfaldsrummet kunne altså være defineret som $U = [150cm;210cm]$. Udfaldsrummet er kontinuert da elevers højde kan variere med et infinitesimal, altså elev $a$ kunne være en uendeligt lille mængde højere end elev $b$. I sådan et udfaldsrum findes der ikke nogen længde af udfaldsrummet, altså $|U| \notin \mathbb{R}$. Derfor kaldes det også et endeligt og et ikke-endeligt udfaldsrum \cite{SC}. \\
+Der findes to typer af udfaldsrum, et diskret og kontinuert udfaldsrum. Forskellen på disse to er, at der i et diskret udfaldsrum kun er et givent antal mulige udfald. Et eksempel på et diskret udfaldsrum er en sekssidet terning. Denne sekssidet terning vil have et udfaldsrum $U$, der indeholder elementerne $1,2,3,4,5,6$. Det kan skrives som $U = \{1,2,3,4,5,6\}$. Altså er der tale om et udfaldsrum med seks elementer, hvilket skrives $|U| = 6$ eller som $n$. Et kontinuert udfaldsrum kunne eksempelvis være højden af elever i en klasse. I dette tilfælde kan udfaldsrummet være defineret som $U = [150cm;210cm]$. Udfaldsrummet er kontinuert da elevers højde kan variere med et infinitesimal. En elev $a$ kan være en uendelig lille stykke højere end elev $b$. Et sådan udfaldsrum indenholder ikke et endeligt antal elementer \cite{SC}. \\
 
-En delmængde er en mængde af udfaldsrummet, det beskrives ofte med $A$ eller $B$. Hvis vi tager udgangspunkt i den sekssidet terning igen, kunne en delmængde af dets udfaldsrum være $A = \{1,3\}$. Altså en delmængde indeholder altså en eller flere elementer fra udfaldsrummet. \\
+En delmængde er en mængde af et udfaldsrum. Delmængden beskrives ofte med $A$ eller $B$. Hvis vi endnu engang tager udgangspunkt i den sekssidet terning, kan en delmængde af ternings udfaldsrum være $A = \{1,3\}$. En delmængde indeholder derved en eller flere elementer fra udfaldsrummet. \\
 
-Ydermere vil et bestemt element i et udfaldsrum eller delmængde denoteres $u_i$ eller $a_i$, altså for henholdsvis $A$ og $U$. Det vil sige hvis vi har en mængde $Q$ vil et bestemt element i $Q$ denoteres som $q_i$. Desuden findes der en række operatorer der beskriver delmængders relationer til hinanden og udfaldsrummet.
+Ydermere vil et bestemt element i et udfaldsrum eller delmængde denoteres $u_i$ eller $a_i$, altså for henholdsvis $A$ og $U$. Det vil sige, at hvis vi har en mængde $Q$ vil et bestemt element i $Q$ denoteres som $q_i$. Desuden findes der en række operatorer, der beskriver delmængders relationer til hinanden samt udfaldsrummet.
 \begin{enumerate}
   \item $A \cup B$: udfaldet ligger i enten A eller B, evt. i både A og B
   \item $A \cap B$: udfaldet ligger i både A og B
   \item $A \backslash B$: udfaldet ligger i A og ikke B
   \item $A^c$: udfaldet ligger ikke i A (dette kan også denoteres $\bar{A}$)
 \end{enumerate}
-Betegnelserne er de samme, som vi bruger i mængdelæren, og vi taler derfor om foreningsmængden $A \cup B$, fællesmængden $A \cap B$, mængdedifferensen $A \backslash B$ samt komplementærmængden $A^c$ \cite{SC}. Nedenstående figurer også kaldet venn-diagrammer, illustreres overstående mængder og deres operatorer.
+Betegnelserne er de samme, som vi bruger i mængdelæren, og vi taler derfor om foreningsmængden $A \cup B$, fællesmængden $A \cap B$, mængdedifferensen $A \backslash B$ samt komplementærmængden $A^c$ \cite[p.~16]{SC}. Nedenstående figurer, også kaldet venn-diagrammer, illustrerer overstående mængder og deres operatorer.
 
 \def\firstcircle{(0,0) circle (1.5cm)}
 \def\secondcircle{(0:2cm) circle (1.5cm)}
@@ -82,31 +82,31 @@ Sandsynlighedsfunktion denoteres $P$ og beskriver sandsynligheden for et element
 \end{align}
 Desuden kan $\{1,2\}$ også beskrives som en delmængde af U på formen $A = \{1,2\}$. Herved gælder det, at $P(A) = P(1) + P(2)$. \\
 
-Sandsynlighedsfunktion kan også være afhængig af en anden sandsynlighed. Et eksempel på dette kunne være en kasse is. Kassen med is indeholder fire slags is, hvor $50\%$ af isen er med mørk chokolade og den resterende $50\%$ er med hvis chokolade, lad denne sandsynlighed værende betegnet med $P_c$. Desuden er $70\%$ af de der har mørk chokolade mandler og $50\%$ af de med hvids chokolade har også mandler, lad denne sandsynlighed vil således værende beskrevet som $P(u_i | P_c)$. Altså sandsynligheden for udfaldet $u_i$ er afhængig af $P_c$ 
+Sandsynlighedsfunktion kan også være afhængig af en anden sandsynlighed. Et eksempel på dette kunne være en kasse is. Kassen med is indeholder fire slags is, hvor $50\%$ af isen er med mørk chokolade og de resterende $50\%$ er med hvid chokolade. Lad denne sandsynlighed værende betegnet med $P_c$. Desuden har $70\%$ af de is der har mørk chokolade, mandler og $50\%$ af isene med hvide chokolade også mandler. Denne vil således være beskrevet som $P(u_i | P_c)$. Herved er sandsynligheden for udfaldet $u_i$ afhængig af $P_c$.
 
 \section{Sandsynlighedsfelt}
 
-Et sandsynlighedsfelt findes på to former, det endelige - også kaldet det diskrete sandsynlighedsfelt - samt det kontinuærte sandsynlighedsfelt også kaldet et ikke-endeligt sandsynlighedsfelt. Et sandsynlighedsfelt kan denoteres $(U, P)$ og er bestående af et udfaldsrum $U$ og en sandsynlighedsfunktion $P$. Hvis der er tale om et symmetrisk sandsynlighedsfelt, vil følgende være gældende for $P$.
+Et sandsynlighedsfelt findes på to former. Det endelige - også kaldet det diskrete sandsynlighedsfelt - samt det kontinuærte sandsynlighedsfelt også kaldet et ikke-endeligt sandsynlighedsfelt. Et sandsynlighedsfelt kan denoteres $(U, P)$ og er bestående af et udfaldsrum $U$ og en sandsynlighedsfunktion $P$. Hvis der er tale om et symmetrisk sandsynlighedsfelt, vil følgende være gældende for $P$.
 \begin{align}
   P(U) &= 1 \\
-  P(u_1) + P(u_i) + ... + P(u_n) &= 1 \\
-  P(u_1) = P(u_i) = ... = P(u_n) &= \frac{1}{|U|}
+  P(u_1) + P(u_i) + \dots + P(u_n) &= 1 \\
+  P(u_1) = P(u_i) = \dots = P(u_n) &= \frac{1}{|U|}
 \end{align}
-De to udsagn udtrykker derved at sandsynligheden for $P(U_i)$ er i intervallet $[0;1]$ samt at den samlede sandsynlighed for feltet er $1$, hvor $1 = 100\%$. I et ikke-symmetrisk sandsynlighedsfelt vil de to første regler af de overstående tre gælde, men sandsynligheden for de enkelte elementer i udfaldsrummet er ikke nødvendigvis lig, altså kan $P(u_1) \neq P(u_2)$ \cite{SC}.\\
+De to udsagn udtrykker derved at sandsynligheden for $P(U_i)$ er i intervallet $[0;1]$ samt at den samlede sandsynlighed for feltet er $1$, hvor $1 = 100\%$. I et ikke-symmetrisk sandsynlighedsfelt vil de to første regler af de overstående tre gælde, men sandsynligheden for de enkelte elementer i udfaldsrummet er ikke nødvendigvis lig hinanden. Altså kan $P(u_1) \neq P(u_2)$ \cite{SC}.\\
 
 \section{Stokastiske variabler}
 
-Stokastiske variabler findes af to typer der begge denoteres med $X$, lad desuden $x_i$ være et konkret udfald, disse to typer er henholdsvis diskret og kontinuert. En stokastiske variable er en variable som kan tage alle værdier i et givent udfaldsrum, med sandsynligheden $P$, altså $P(X = u_i) = P(u_i)$. Forskellen mellem diskret og kontinuert stokastiske variabler er deres udfaldsrum og deres tilhørende regneregler. Et eksempel på en stokastiske variabel kunne være Europæisk Roulette, dette spil har et symmetrisk sandsynlighedsfelt med udfaldsrummet $U = \{ 0,1,...,36\}$ der har indeholder $37 = |U|$ udfald. Det vil altså sige at den kugle man smider ned i spillet kan beskrives som en stokastiske variable $X$ og den har en lige stor sandsynlighed for at tage et udfald i udfaldsrummet, da der er tale om et symmetrisk sandsynlighedsfelt. Altså $P(u_1) = P(u_i) = ... = P(u_n)$, det betyder at $P(X = 1) = P(X = 4)$. Ydermere er roulettens udfaldsrum opdelt i tre farver grøn, rød og sort, disse kan betegnes som delmængderne henholdsvis $G$, $R$ og $S$. Vi kan således beskrive sandsynligheden for at den stokastiske variabel $X$ vil ligge i en delmængde således $P(X \in S) = P(X \in R) = \frac{18}{37}$ og $P(X \in G) = \frac{1}{37}$. Delmængden $G$ kunne også have været defineret som $G = (R \cup S)^c$, altså de udfald som ikke falder ind under hverken $R$ eller $S$, eller $G = 0$ \cite{NM} \\
+Der findes to typer af stokastiske variabler. Disse er begge denoteres med $X$ og desuden er $x_i$ et konkret udfald. Disse to typer er henholdsvis diskret og kontinuert. En stokastiske variable er en variable, som kan tage alle værdier i et givent udfaldsrum med sandsynligheden $P$, altså $P(X = u_i) = P(u_i)$. Forskellen mellem diskrete og kontinuerte stokastiske variabler er udfaldsrummet og de tilhørende regneregler. Et eksempel på en stokastiske variabel er Europæisk Roulette. Dette spil har et symmetrisk sandsynlighedsfelt med udfaldsrummet $U = \{ 0,1,\dots,36\}$, hvilket indeholder $37 = |U|$ udfald. Det vil altså sige, at den kugle man smider ned i spillet kan beskrives som en stokastiske variabel $X$, og $X$ har en lige stor sandsynlighed for at blive et element i udfaldsrummet, da der er tale om et symmetrisk sandsynlighedsfelt, hvilket betyder at $P(u_1) = P(u_i) = \dots = P(u_n)$, det betyder at $P(X = 1) = P(X = 4)$. Ydermere er roulettens udfaldsrum opdelt i tre farver; grøn, rød og sort. Disse kan betegnes som delmængderne $G$, $R$ og $S$. Vi kan beskrive sandsynligheden for, at den stokastiske variabel $X$ ville være et element i delmængden således $P(X \in S) = P(X \in R) = \frac{18}{37}$ og $P(X \in G) = \frac{1}{37}$. Delmængden $G$ kunne også have været defineret som $G = (R \cup S)^c$, altså de udfald som ikke falder ind under hverken $R$ eller $S$, eller $G = 0$ \cite{NM} \\
 
-Lad desuden $\mathbb{E}[X]$ være den forventede værdi af $X$, den forventede værdi skal forstås næsten som et gennemsnit. I det ovenstående eksempel vil den forventede værdi $X$ være $\mathbb{E}[X] = 18$, dette kan udregnes på følgende måde:
+Lad desuden $\mathbb{E}[X]$ være den forventede værdi af $X$. Den forventede værdi skal forstås næsten som et gennemsnit. I det ovenstående eksempel vil den forventede værdi $X$ være $\mathbb{E}[X] = 18$. Det kan udregnes på følgende måde:
 \begin{equation}
   \mathbb{E}[X] = \sum_{i = 1}^n \frac{u_i}{n}
 \end{equation}
-Dette er kun tilfældet da det er et symmetrisk sandsynlighedsfelt, hvis sandsynligheden for de forskellige udfald er forskellige fra hinanden, altså  $P(u_1) \neq P(U_2)$. Her ville man bruge følgende formel for den forventede værdi af $X$.
+Dette er kun tilfældet ved et symmetrisk sandsynlighedsfelt, hvis sandsynligheden for de forskellige udfald er forskellige fra hinanden, altså  $P(u_1) \neq P(U_2)$. Her vil man kunne anvende følgende formel for den forventede værdi af $X$.
 \begin{equation}
   \mathbb{E}[X] = \sum_{i = 1}^n u_i \times P(u_i)
 \end{equation}
 
-Stokastiske Variabler på en computer er ofte repræsenteret som et pseudo-genereret tilfældigt tal, hvilket er et tilfældigt tal udvalgt af computeren. Disse tilfældigt genererede tal bliver brugt til at udføre eksperimenter og simulering af Monte Carlo Metoden \cite{SBM}. Dette vil komme til udtryk i det følgende afsnit, hvori det vil blive vist hvordan Monte Carlo Simulering gør brug af Stokastiske Variabler. 
+Stokastiske variabler på en computer er ofte repræsenteret som et pseudo-genereret tilfældigt tal, hvilket er et tilfældigt tal udvalgt af en computer. Disse tilfældigt genererede tal bliver brugt til at udføre eksperimenter og simulering af Monte Carlo Metoden \cite{SBM}. Dette vil komme til udtryk i det følgende afsnit hvori det vil blive vist, hvordan Monte Carlo Simulering gør brug af Stokastiske variabler. 
 
 \end{document}

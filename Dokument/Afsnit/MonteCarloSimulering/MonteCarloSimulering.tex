@@ -4,21 +4,23 @@
 
 \chapter{Monte Carlo Metoden}
 
-I dette afsnit vil opgaven komme ind på... \\
+I dette afsnit vil opgaven vise og redegøre for hvad Monte Carlo Metoden er, og hvordan den kan anvendes til at udregne et integral. \\
 
-Monte Carlo Metoden har sit navn efter Stanislaw Ulams onkel, som ofte spillede på Casino Monte Carlo i Monaco. Metoden refererer herved til de sandsynligheder og de tilfældige udkom der kan finde sted i sådanne spil. Ulam var en af de forskere der arbejdede på Monte Carlo Metoden under Manhatten Projektet, som blev iværksat i 1942 \cite{MSD}. Metoden blev udviklet for at kunne simulere neutroners diffusion. Det var nødvendigt at udvikle og benytte denne metode, da problemet var for komplekst til at kunne blive afledt algebragisk eller blive løst med datidige metoder. Metoden blev først anvendt på gamle analoge computere, hvilket begrænsede kompleksiteten af simulationen \cite{AHF}. \\
+Monte Carlo Metoden har sit navn efter Stanislaw Ulams onkel, som ofte spillede på Casino Monte Carlo i Monaco. Metoden refererer herved til de sandsynligheder og de tilfældige udkom der kan finde sted i sådanne spil. Ulam var en af de forskere der arbejdede på Monte Carlo Metoden under Manhatten Projektet, som blev iværksat i 1942 \cite{MSD}. Metoden blev udviklet for at kunne simulere neutroners diffusion. Det var nødvendigt at udvikle og benytte denne metode, da problemet var for komplekst til at kunne blive afledt algebragisk eller blive løst med datidens metoder. Metoden blev først anvendt på gamle analoge computere, hvilket begrænsede kompleksiteten af simulationen \cite{AHF}. \\
 
-Ydermere er Monte Carlo Metoden også en algoritme, hvilket betyder at det er en process som er udført i nogle logiske trin, trin som beskriver udførelse af metoden. En algoritme kunne f.eks. være trinene involveret i at sortere et sæt kort. Lad kortspillet være et sæt kort og et element værende ét enkelt spillekort, kortspillet kan således sorteres på følgende måde:
+Der ud over er Monte Carlo Metoden også en algoritme, hvilket betyder at det er en process som er udført i nogle logiske trin. Trinene beskriver udførelse af metoden. En algoritme kunne for eksempel være de trin, som er involveret i sorteringen et sæt kort. Lad kortspillet være et sæt kort og et element værende ét enkelt spillekort. Kortspillet kan således sorteres på følgende måde:
 \begin{enumerate}
   \item Vælg et vilkårligt element $e_i$ fra sættet.
   
-  \item Placere elementet bagest i sættet.
+  \item Placere elementet bagerst i sættet.
 
   \item Sammenlign nu $e_i$ med elementet lige før $e_{i-1}$ hvis $e_i > e_{i-1}$ bytter de plads. Dette gentages indtil $e_i < e_{i-1}$ eller $i = 0$.
 
-  \item Gentag denne process indtil kortspillet er sorteret
+  \item Gentag denne process indtil kortspillet er sorteret.
 \end{enumerate}
-Denne sorterings algoritme er også kaldet boblesortering og dennes navn kommer af måden elementerne i sættet bobler til toppen. \cite{BS} \\
+Denne sorterings algoritme er også kaldet boblesortering og navnet kommer af måden elementerne i sættet bobler til toppen. \cite{BS} \\
+
+I det følgende afsnit vil opgaven give et eksempel på hvordan spillet Plat eller Krone kan ses som en simpel Monte Carlo Simulering. \\
 
 \section{Plat eller Krone}
 Et eksempel på udførelse af Monte Carlo Simulering kunne være spillet Plat eller Krone, spillets regler er som følgende:
