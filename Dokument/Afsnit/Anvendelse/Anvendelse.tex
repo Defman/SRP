@@ -15,9 +15,9 @@ Desuden har robotten en sensor der kan måle farven på formen $(r,g,b)$ er hvad
 
 Med udgangspunk i overstående robot der implementer et Dead-reckoning algoritme, kan vi lokalisere robotten på et kendt kort ved brug af Monte Carlo Lokalisering.
 
-Man kan anvende Monte Carlo Metoden til at lokalisere, f.eks. en anatom robot, på et kendt kort. Dette kan lade sig gøre ved brug af Monte Carlo Lokalisering, dette er også en form for partikelfilter. Grunden til at Monte Carlo lokalisering er et partikelfilter er grundet i måden hvorpå metoden lokalisere. Lad os sige vi har et sandsynlighedsfelt hvor udfaldsrummet $U$ er alle de mulig positioner. Lad $X$ være en stokastisk variabel i sandsynligheds feltet, altså så $X$ er en tilfældig mulig position for robotten på kortet. Vi kan nu lave et eksperiment, hvor $X$ bestemmes til et punkt i sandsynlighedsfeltet, vi kan nu udregne 
+Man kan anvende Monte Carlo Metoden til at lokalisere, f.eks. en autonom robot, på et kendt kort. Dette kan lade sig gøre ved brug af Monte Carlo Lokalisering, dette er også en form for partikelfilter. Grunden til at Monte Carlo lokalisering er et partikelfilter er grundet i måden hvorpå metoden lokalisere. Lad os sige vi har et sandsynlighedsfelt hvor udfaldsrummet $U$ er alle de mulig positioner. Lad $X$ være en stokastisk variabel i sandsynligheds feltet, altså så $X$ er en tilfældig mulig position for robotten på kortet. Vi kan nu lave et eksperiment, hvor $X$ bestemmes til et punkt i sandsynlighedsfeltet, vi kan nu udregne 
 
-Monte Carlo Lokalisering består af et sæt af trin som gentages hver gang den anatome robot bevæger sig. 
+Monte Carlo Lokalisering består af et sæt af trin som gentages hver gang den autonome robot bevæger sig. 
 
 Lad os sige at vi har et kvadratisk område med forskelig farvet fliser, som set på nedenstående figur. \\
 
@@ -30,7 +30,7 @@ Lad os sige at vi har et kvadratisk område med forskelig farvet fliser, som set
 
   \item Da laves nu en vægtede liste af fejlen mellem $m$ og $rgb(X)$ og punkterne $X$
 
-  \item n antal punktere fjernes
+  \item n antal punkter fjernes
 \end{enumerate}
 
 \section{implementering}
