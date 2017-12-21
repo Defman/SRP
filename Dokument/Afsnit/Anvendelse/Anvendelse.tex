@@ -13,19 +13,26 @@ Et eksempel på overstående formel, kunne være at robotten havde et sæt hjul 
 \begin{equation}
   L = 5cm \times \pi \times \frac{4512}{20} = 3543.71cm = 35.4371m
 \end{equation}
-Vi kan desuden udregne vinklen robotten bevæger sig i, ved at...?? \\
+Vi kan også udregne vinklen $\theta$ for robotten, da dette er en simpel implementering af Dead-reckoning vil vi kun udføre rotationer, når robotten står stille.
 
-Desuden har robotten en sensor der kan måle farven på formen $(r,g,b)$ er og hvad der befinder sig und
+Desuden har robotten en sensor der er placeret under den, denne sensoren måler farven af hvad robotten bevæger sig på. Sensoren måler et resultat på formen $(r,g,b)$, hvor $(0,0,0)$ vil være sort og $(255,0,0)$ ville være en rød farve. 
 
-Med udgangspunk i overstående robot der implementerer en Dead-Reckoning algoritme, kan vi lokalisere robotten på et kendt kort ved brug af Monte Carlo Lokalisering. //MANGLER REFERENCE
+Med et udgangspunk i overstående robot der implementer et Dead-reckoning algoritme, kan vi lokalisere robotten på et kendt kort ved brug af Monte Carlo Lokalisering. Det kendte kort i dette konkrete eksempel er et kort der er kvadratisk af $20 \times 20$ meter og er bestående af fliser med forskelig farver, disse farver er henholdsvis rød, grøn, blå og lilla, som illustreret på nedenstående figur.
 
-Man kan anvende Monte Carlo Metoden til at lokalisere, f.eks. en autonom robot, på et kendt kort. Dette kan lade sig gøre ved brug af Monte Carlo Lokalisering, dette er også en form for partikelfilter. Grunden til at Monte Carlo lokalisering er et partikelfilter er grundet i måden hvorpå metoden lokalisere. Lad os sige vi har et sandsynlighedsfelt hvor udfaldsrummet $U$ er alle de mulig positioner. Lad $X$ være en stokastisk variabel i sandsynligheds feltet, altså så $X$ er en tilfældig mulig position for robotten på kortet. Vi kan nu lave et eksperiment, hvor $X$ bestemmes til et punkt i sandsynlighedsfeltet, vi kan nu udregne ??
+\pgfmathdeclarerandomlist{Colors}{{red}{green}{blue}{purple}}
 
-Monte Carlo Lokalisering består af et sæt af trin som gentages hver gang den autonome robot bevæger sig. 
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \foreach \x in {0,...,19} {
+    \foreach \y in {0,...,19} {
+      \pgfmathrandomitem{\RandomColor}{Colors} 
+      \fill [\RandomColor] (\x,\y) rectangle (\x+1,\y+1);
+    }
+  }
+\end{tikzpicture}
+\end{center}
 
-Lad os sige at vi har et kvadratisk område med forskelig farvede fliser, som set på nedenstående figur. \\
-
-\section{Opbygning}
+Altså så vi har et kendt kort hvor der er $400$ fliser eller punkter af forskelige farvers, dette kan repræsenteret som vores udfaldsrum $U$, hvor dets elementer er punkter på formen $P = (x,y)$. Dette udfaldsrum er en del af et symmetrisk sandsynlighedsfelt, hvilket betyder at robotten har en lige stor sandsynlighed for at befinde sig på et givent punk. Ud fra dette sandsynlighedsfelt kan vi definere en stokastisk variabel $X$ som kan tage hvilket som helst Punkt i udfaldsrummet $U$, hvor $x_i$ er et konkrete punkt. Følgende nedenstående trin er derfor involverede i at lokalisere robotten på kortet.
 
 \begin{enumerate}
   \item Først bestemmes et sæt af stokastisk variabler $X$, som er punkter på formen $(x,y)$ i udfaldsrummet $U$ med højst koncentration omkring de punkter med lavest afvigelse fra målingen $m$
