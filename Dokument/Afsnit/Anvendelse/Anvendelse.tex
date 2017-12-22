@@ -3,11 +3,11 @@
 \begin{document}
 
 \chapter{Monte Carlo Lokalisering}
-I dette afsnit vil opgaven vise hvordan Monte Carlo Lokalisering kan anvendes til at lokalisere en konkrete autonom robot i et kendt område.
+I dette afsnit vil opgaven vise, hvordan Monte Carlo Lokalisering kan anvendes til at lokalisere en konkrete autonom robot i et kendt område.
 
- Der tages udgangspunkt i en autonom robot, der har fire hjul og mindst to elektriskemotorer med enkoder. Elektriskemotorer med enkoder afgiver et elektrisk signal $n$ antal gange per total rotation af motorens akse. Dette kan eksempelvis være implementeret ved brug af en hall sensor, der måler på en magnet eller en optisk sensor, som måler på et optisk gitter der følger aksen. Således er robotten i stand til at udregne, hvor langt den har bevæget sig i en given retning. Denne robot kunne f.eks. være en reklame robot, den kører rundt i et givent område og har en bakke med chokolade som folk kan tage af. Dette område kunne være en banegård eller en butik. Robotten har her til en sensor der er placeret på undersiden, denne sensoren måler farven af hvad robotten bevæger sig på. Sensoren måler et resultat på formen $(r,g,b)$, hvor $(0,0,0)$ vil være sort og $(255,0,0)$ ville være en rød farve. De forskelige farver der måles kunne være forskelige nuancer eller farver fliser \cite{DR}.
+ Der tages udgangspunkt i en autonom robot, der har fire hjul og mindst to elektriske motorer med enkoder. Elektriske motorer med enkoder afgiver et elektrisk signal $n$ antal gange per total rotation af motorens akse. Dette kan eksempelvis være implementeret ved brug af en hall sensor, der måler på en magnet eller en optisk sensor, som måler på et optisk gitter der følger aksen. Således er robotten i stand til at udregne, hvor langt den har bevæget sig i en given retning. Denne robot kunne f.eks. være en reklamerobot, som kører rundt i et givent område og har en bakke med chokolade som forbipasserende kan tage af. Dette område kunne være en banegård eller en butik. Robotten har til dette formål en sensor, der er placeret på undersiden. Sensoren måler farven af det underlag som robotten bevæger sig på. Sensoren måler et resultat på formen $(r,g,b)$, hvor $(0,0,0)$ eksempelvis svarer til farven sort og $(255,0,0)$ svarer til farven rød \cite{DR}. \\
 
-Med et udgangspunk i overstående robot der implementerer et Dead-Reckoning algoritme, kan vi lokalisere robotten på et kendt område ved brug af Monte Carlo Lokalisering. Det kendte område kan betragtes som et kort, i dette konkrete eksempel er kortet kvadratisk af $20 \times 20$ meter og er bestående af fliser med forskellige farver, disse farver er henholdsvis rød, grøn, blå og lilla, som illustreret på nedenstående figur.
+Med udgangspunk i overstående robot, der implementerer et Dead-Reckoning algoritme, kan robotten lokaliseres på et kendt område ved brug af Monte Carlo Lokalisering. Det kendte område kan betragtes som et kort. I dette konkrete eksempel er kortet kvadratisk, $20 \times 20$ meter, og er bestående af fliser med forskellige farver. Disse farver er henholdsvis rød, grøn, blå og lilla, som illustreret på nedenstående figur.
 
 \pgfmathdeclarerandomlist{Colors}{{red}{green}{blue}{purple}}
 
@@ -23,26 +23,28 @@ Med et udgangspunk i overstående robot der implementerer et Dead-Reckoning algo
 \end{tikzpicture}
 \end{center}
 
-Altså vi har et kendt kort hvor der er $400$ fliser af forskelige farver hvilke også fungerer som punkter. Dette er repræsenteret i vores udfaldsrum $U$. Vores udfaldsrums elementer er punkter på formen $u_i = (x,y)$ og $rgb(u_i)$ er flisens farven på formen RGB, altså hvis vi har en rød flise på punktet $(1,2)$ vil $rgb((1,2)) = (255,0,0)$. Dette udfaldsrum er en del af et sandsynlighedsfelt, hvilket betyder at robotten har en sandsynlighed for at befinde sig på et givent punkt. Ud fra dette sandsynlighedsfelt kan vi definere en stokastisk variabel $X$ som kan tage hvilket som helst punkt i udfaldsrummet $U$, hvor $x_i$ er et konkrete punkt. Algoritmen består i et løbende antal iterationer, hvor under hver iteration bliver der simuleret et $n$ antal konkrete stokastisk variabler $x_i$. Disse konkrete punkter bliver også kaldet for partikler, hvilket bliver tydeligt på de kommende illustreringer. Desuden er sandsynlighedsfunktionen $P$ afhængig af om der er tale om den første iteration af algoritmen eller om det er løbende iterationer. For første iteration er sandsynlighedsfunktionen den samme som ved et symmetrisk sandsynlighedsfelt, altså der er tale om en jævn fordeling af partiklerne, men de efterfølgende iterationer er afhængig af kun og kun den forgående iterations partikler. sandsynlighedsfunktionen er afhængig på følgende måde $P(x_i|x_{i-1})$ hvor $x_{i-1}$ er alle de konkrete 
+Altså vi har et kendt kort, hvor der er $400$ fliser af forskelige farver, hvilke også fungerer som punkter. Punkterne er repræsenteret som elementer i udfaldsrum $U$. Udfaldsrummets elementer er punkter på formen $u_i = (x,y)$ og $rgb(u_i)$ er flisens farven på formen RGB. Hvis vi har en rød flise på punktet $(1,2)$ vil $rgb((1,2)) = (255,0,0)$. Dette udfaldsrum er en del af et sandsynlighedsfelt, hvilket betyder at robotten har en sandsynlighed for at befinde sig på et givent punkt. Ud fra dette sandsynlighedsfelt kan vi definere en stokastisk variabel $X$, som kan være hvilket som helst punkt i udfaldsrummet $U$, hvor $x_i$ er et konkrete punkt.
+
+Algoritmen består i et løbende antal iterationer, hvor under hver iteration bliver der simuleret et $n$ antal konkrete stokastisk variabler $x_i$. Disse konkrete punkter bliver også kaldet for partikler, hvilket bliver tydeligt på de kommende illustrationer. Desuden er sandsynlighedsfunktionen $P$ afhængig af om der er tale om den første iteration af algoritmen eller om det er løbende iterationer. For første iteration er sandsynlighedsfunktionen den samme som ved et symmetrisk sandsynlighedsfelt. Der er her tale om en jævn fordeling af partiklerne, men de efterfølgende iterationer er afhængig af kun og kun af den forgående iterations partikler. Sandsynlighedsfunktionen er afhængig på følgende måde $P(x_i|x_{i-1})$ hvor $x_{i-1}$ er de konkrete forgående punkter i den forgående iteration \cite{ML}.
 
 Nedenstående trin er derfor involverede i at lokalisere robotten på kortet.
 
 \begin{enumerate}
-  \item $n$ tilfældige konkrete stokastisk variabler $x_i$ bestemmes.
+  \item $n$ tilfældige konkrete stokastisk variabler $x_i$ bestemmes for kun første iteration.
 
-  \item Robotten laver en måling $m$ på formen $(r,g,b)$ på dens nuværende position
+  \item Robotten laver en måling $m$ på formen $(r,g,b)$ på dens nuværende position.
 
   \item Målingen $m$ sammenlignes nu med $x_i$ på følgende måde $|m - x_i|$
 
-  \item Et nyt sandsynlighedsfelt $\lambda$ hvor $P(x_i) = \frac{|m - x_i|}{s}$ hvor $s$ er summen af alle fejl fra forgående trin og $U$ er de forgående konkrete elementer $x_i$. Dette vil betyde at der er større sandsynlighed for de punkter med en stor fejl relativt til dem med en lav fejl
+  \item Et nyt sandsynlighedsfelt $\lambda$ der er magen til det forgående hvor sandsynlighedsfunktionen er afhængig af fejlen, således at $P(x_i | |m_{-1} - x_{i-1}|)$.
 
-  \item Der bestemmes nu $\lambda_n$ tilfældige punkter fra $\lambda$, hvor $ \lambda_n < n$, og fjernes fra $\lambda_U$
+  \item Der bestemmes nu $\lambda_n$ tilfældige punkter fra $\lambda$, hvor de punkter med højste fejl har den højeste sandsynlighed, hvor $ \lambda_n < n$, og fjernes fra $\lambda_U$
 
-  \item Robotten bevæger sig nu en flise i hvilken som helst retning, hvor robotten stadig vil være inden for fliserne. Alle resterende punkter i $\lambda$ flyttes i samme retning og længde 
+  \item Robotten bevæger sig nu til en ny flise i en hvilken som helst retning, hvor robotten stadig vil være inden for fliserne. Alle resterende punkter i $\lambda$ flyttes i samme retning.
 
-  \item Der bestemmes nu $\lambda_n$, altså samme antal som blev fjernet, punkterne fra et sandsynlighedsfelt hvor $P(x_i) = 1-\frac{|m-x_i|}{s}$, altså så punkter med en lav fejl har en højere sandsynlighed. En af de omliggende fliser fra dette punkt som robotten kunne have bevæget sig over vælges og tilføjes til udfaldsrummet $\lambda_u$. Derefter gentages de forgående tre trin det antal gange robotten bevæger sig.
+  \item Der bestemmes nu $\lambda_n$, altså samme antal som blev fjernet, punkterne fra et sandsynlighedsfelt hvor sandsynlighed er størst for de med den laveste fejl, altså så punkter med en lav fejl har en højere sandsynlighed. En af de omliggende fliser fra dette punkt som robotten kunne have bevæget sig over vælges og tilføjes til udfaldsrummet $\lambda_u$. Derefter gentages de forgående tre trin det antal gange robotten bevæger sig.
 \end{enumerate}
-Hvis man fulgte overstående trin, vil man finde at man starter ud med en masse punkter spredt ud over hele kortet, men som processen gentages bliver der dannet en koncentration af punkter hvor robotten faktisk befinder sig. Nedenstående figurer illustrerer dette, hvor de sorte punkter er mulige positioner for robotten og det orange punkt er robotten.
+Hvis overstående trin følges, vil man starte ud med en masse partikler spredt jævnt hen over udfaldsrummet $U$, som betegner kortet. Men som processen gentages bliver der dannet en koncentration af partikler der hvor robotten faktisk befinder sig. Nedenstående figurer illustrerer dette, hvor de sorte punkter er partikler og det orange punkt er robotten.
 \begin{center}
   \begin{tikzpicture}[scale=0.25]
     \pgfmathsetseed{42}
@@ -52,12 +54,32 @@ Hvis man fulgte overstående trin, vil man finde at man starter ud med en masse 
         \fill [\RandomColor] (\x,\y) rectangle (\x+1,\y+1);
       }
     }
+    \fill[orange] (3.5,15.5) circle[radius=3mm];
+    \fill (3.5,15.5) circle[radius=2mm];
     \foreach \x in {0,...,19} {
       \fill ({floor((rand + 1)*10)+0.5},{floor((rand + 1)*10)+0.5}) circle[radius=2mm];
     }
-    \fill[orange] ({floor((rand + 1)*10)+0.5},{floor((rand + 1)*10)+0.5}) circle[radius=3mm];
+  \end{tikzpicture}
+  \qquad
+  \begin{tikzpicture}[scale=0.25]
+    \pgfmathsetseed{42}
+    \foreach \x in {0,...,19} {
+      \foreach \y in {0,...,19} {
+        \pgfmathrandomitem{\RandomColor}{Colors} 
+        \fill [\RandomColor] (\x,\y) rectangle (\x+1,\y+1);
+      }
+    }
+    \fill[orange] (3.5,12.5) circle[radius=3mm];
+    \fill (3.5,12.5) circle[radius=2mm];
+    \foreach \x in {0,...,2} {
+      \fill ({floor((rand + 1)*10)+0.5},{floor((rand + 1)*10)+0.5}) circle[radius=2mm];
+    }
+    \foreach \x in {0,...,4} {
+      \fill ({floor((rand + 1)*2)+2.5},{floor((rand + 1)*2)+10.5}) circle[radius=2mm];
+    }
   \end{tikzpicture}
 \end{center}
-I nedenstående sektion, vil jeg komme ind på en teoretisk implementation af dette i Python.
+
+I det følgende diskussions afsnit vil opgaven diskutere muligheder og begrænsninger i forbindelse med anvendelsen af Monte Carlo Lokalisering i en konkrete autonom robot.
 
 \end{document}
