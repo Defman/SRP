@@ -35,13 +35,13 @@ Nedenstående trin er derfor involverede i at lokalisere robotten på kortet.
 
   \item Målingen $m$ sammenlignes nu med $x_i$ på følgende måde $|m - x_i|$
 
-  \item Et nyt sandsynlighedsfelt $\lambda$ der er magen til det forgående hvor sandsynlighedsfunktionen er afhængig af fejlen, således at $P(x_i | |m_{-1} - x_{i-1}|)$.
+  \item Et nyt sandsynlighedsfelt $\lambda$ der er magen til det forgående hvor sandsynlighedsfunktionen er afhængig af den forgående iterations fejl, således at $P(x_i | |m_{-1} - x_{i-1}|)$ hvor fejlen er normaliseret, altså i intervallet $[0;1]$. Dette kan lade sig gøre ved at tage fejlen $|m_{-1} - x_{i-1}|$ og dele med summen af den totale fejl for forgående iteration $\frac{|m_{-1} - x_{i-1}|}{\sum |m_{-1} - x_{i-1}|}$. Dette kaldes i nogle tilfælde en vægtede liste, da de individuelle elementer har en vægt. 
 
-  \item Der bestemmes nu $\lambda_n$ tilfældige punkter fra $\lambda$, hvor de punkter med højste fejl har den højeste sandsynlighed, hvor $ \lambda_n < n$, og fjernes fra $\lambda_U$
+  \item Der bestemmes nu $\lambda_n$ tilfældige punkter fra $\lambda$, hvor de punkter med højste fejl har den højeste sandsynlighed, hvor $\lambda_n < n$, og fjernes fra $\lambda_U$
 
   \item Robotten bevæger sig nu til en ny flise i en hvilken som helst retning, hvor robotten stadig vil være inden for fliserne. Alle resterende punkter i $\lambda$ flyttes i samme retning.
 
-  \item Der bestemmes nu $\lambda_n$, altså samme antal som blev fjernet, punkterne fra et sandsynlighedsfelt hvor sandsynlighed er størst for de med den laveste fejl, altså så punkter med en lav fejl har en højere sandsynlighed. En af de omliggende fliser fra dette punkt som robotten kunne have bevæget sig over vælges og tilføjes til udfaldsrummet $\lambda_u$. Derefter gentages de forgående tre trin det antal gange robotten bevæger sig.
+  \item Der bestemmes nu $\lambda_n$, altså samme antal som blev fjernet, punkterne fra et sandsynlighedsfelt hvor sandsynlighed er størst for de med den laveste fejl, $1-|m_{-1} - x_{i-1}|$, altså så punkter med en lav fejl har en højere sandsynlighed end dem med en høj fejl. Her efter vælges en af de omliggende fliser for dette punkt, som robotten kunne have bevæget sig over på, og tilføjes til udfaldsrummet $\lambda_u$. Derefter gentages dette og de to forgående trin, det antal gange robotten bevæger sig.
 \end{enumerate}
 Hvis overstående trin følges, vil man starte ud med en masse partikler spredt jævnt hen over udfaldsrummet $U$, som betegner kortet. Men som processen gentages bliver der dannet en koncentration af partikler der hvor robotten faktisk befinder sig. Nedenstående figurer illustrerer dette, hvor de sorte punkter er partikler og det orange punkt er robotten.
 \begin{center}
