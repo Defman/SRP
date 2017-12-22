@@ -3,7 +3,7 @@
 \begin{document}
 
 \chapter{Monte Carlo Lokalisering}
-Dette afsnit vil komme ind på, hvordan en autonom robot kan implementere en Monte Carlo Algoritme for således at kunne lokalisere sig selv på et kendt kort.  
+I dette afsnit vil opgaven vise hvordan Monte Carlo Lokalisering kan anvendes til at lokalisere en konkrete autonom robot i et kendt område.
 
  Der tages udgangspunkt i en autonom robot, der har fire hjul og mindst to elektriskemotorer med enkoder. Elektriskemotorer med enkoder afgiver et elektrisk signal $n$ antal gange per total rotation af motorens akse. Dette kan eksempelvis være implementeret ved brug af en hall sensor, der måler på en magnet eller en optisk sensor, som måler på et optisk gitter der følger aksen. Således er robotten i stand til at udregne, hvor langt den har bevæget sig i en given retning. Denne robot kunne f.eks. være en reklame robot, den kører rundt i et givent område og har en bakke med chokolade som folk kan tage af. Dette område kunne være en banegård eller en butik. Robotten har her til en sensor der er placeret på undersiden, denne sensoren måler farven af hvad robotten bevæger sig på. Sensoren måler et resultat på formen $(r,g,b)$, hvor $(0,0,0)$ vil være sort og $(255,0,0)$ ville være en rød farve. De forskelige farver der måles kunne være forskelige nuancer eller farver fliser \cite{DR}.
 
